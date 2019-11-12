@@ -1,0 +1,7 @@
+<app-navbar #navBar
+  [treeOptions]="treeOptions"
+  (selectActiveOption)="selectActiveOption($event)">
+</app-navbar>
+<app-workspace
+  [activeOption]="activeOption">
+</app-workspace>
