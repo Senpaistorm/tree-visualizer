@@ -8,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
 
   treeOptions = [
-    'Binary Search Tree',
-    'AVL Tree',
-    'Heap'
+  {
+    name: 'Binary Search Tree'
+  },
+  {
+    name:'AVL Tree'
+  },
+  {
+    name:'Heap'
+  }
   ]
 
   activeOption = null;

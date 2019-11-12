@@ -1,6 +1,16 @@
 
 <app-tutorial *ngIf="activeOption == null">
 </app-tutorial>
-<p *ngIf="activeOption">
-  workspace works!
-</p>
+<div *ngIf="activeOption && activeOption.name == 'Binary Search Tree'">
+  {{activeOption.name}} module
+  <app-binary-search-tree>
+  </app-binary-search-tree>
+</div>
+<div *ngIf="activeOption && activeOption.name == 'AVL Tree'">
+  {{activeOption.name}} module
+
+</div>
+<div *ngIf="activeOption && activeOption.name == 'Heap'">
+  {{activeOption.name}} module
+
+</div>

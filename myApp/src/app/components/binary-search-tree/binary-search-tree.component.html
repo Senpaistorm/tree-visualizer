@@ -1,0 +1,20 @@
+<p>
+  binary-search-tree works!
+</p>
+<div *ngIf="tree==null" class="row">
+  <div class="col-4 sidenav">
+    <label>Create a root node</label>
+    <input type="number" value="4" />
+    <button
+    (click)="addNode($event)">
+      Go
+    </button>
+    <button>
+      Generate Random tree
+    </button>
+  </div>
+  <div class="col-8">
+    tree display workarea
+  </div>
+
+</div>

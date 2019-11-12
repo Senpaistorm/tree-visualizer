@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule} from'@angular/router';
+import {RouterModule} from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { TutorialComponent } from './components/tutorial/tutorial.component';
+import { BinarySearchTreeComponent } from './components/binary-search-tree/binary-search-tree.component';
 
 
 @NgModule({
@@ -15,10 +17,12 @@ import { TutorialComponent } from './components/tutorial/tutorial.component';
     HomepageComponent,
     NavbarComponent,
     WorkspaceComponent,
-    TutorialComponent
+    TutorialComponent,
+    BinarySearchTreeComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: '', component: HomepageComponent}
     ])
