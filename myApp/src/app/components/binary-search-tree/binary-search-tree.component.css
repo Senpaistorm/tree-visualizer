@@ -11,3 +11,8 @@
   align-items: center;
   display: flex;
 }
+
+#tree-editor{
+  margin: 0;
+  padding: 0;
+}

@@ -4,7 +4,7 @@
       Binary Search Tree
     </h2>
     <label>Insert node</label>
-    <input type="number" value="4" />
+    <input type="number" [formControl]="rootValue" />
     <button type="button"
     (click)="addNode($event)">
       Go
@@ -12,6 +12,10 @@
     <button type="button"
     (click)="generateRandomTree($event)">
       Generate Random tree
+    </button>
+    <button type="button"
+    (click)="setEdges()">
+      setedges
     </button>
   </div>
   <div id="tree-editor" class="col-9">
@@ -21,6 +25,9 @@
     >
     {{node.value}}
     </div>
+      <svg height="510" width="1500">
+    <line x1="543" y1="20" x2="261" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
+    </svg>
   </div>
 
 </div>
