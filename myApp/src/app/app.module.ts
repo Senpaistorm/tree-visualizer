@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { TutorialComponent } from './components/tutorial/tutorial.component';
 import { BinarySearchTreeComponent } from './components/binary-search-tree/binary-search-tree.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { BinarySearchTreeComponent } from './components/binary-search-tree/binar
     NavbarComponent,
     WorkspaceComponent,
     TutorialComponent,
-    BinarySearchTreeComponent
+    BinarySearchTreeComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

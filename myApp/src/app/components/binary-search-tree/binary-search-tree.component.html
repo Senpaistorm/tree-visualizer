@@ -1,20 +1,26 @@
-<p>
-  binary-search-tree works!
-</p>
-<div *ngIf="tree==null" class="row">
-  <div class="col-4 sidenav">
-    <label>Create a root node</label>
+<div class="row">
+  <div class="col-3 sidenav">.
+    <h2>
+      Binary Search Tree
+    </h2>
+    <label>Insert node</label>
     <input type="number" value="4" />
-    <button
+    <button type="button"
     (click)="addNode($event)">
       Go
     </button>
-    <button>
+    <button type="button"
+    (click)="generateRandomTree($event)">
       Generate Random tree
     </button>
   </div>
-  <div class="col-8">
-    tree display workarea
+  <div id="tree-editor" class="col-9">
+    <div id="node-{{node.value}}" class="node" *ngFor="let node of treeNodes"
+      [style.top.px]="node.top"
+      [style.left.px]="node.left"
+    >
+    {{node.value}}
+    </div>
   </div>
 
 </div>

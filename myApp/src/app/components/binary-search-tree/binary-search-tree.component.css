@@ -1,0 +1,13 @@
+.node{
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: yellow;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
