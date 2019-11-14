@@ -1,3 +1,8 @@
+const getWidth = () => {
+  const rect = document.getElementById('tree-editor').getBoundingClientRect();
+  return rect.width;
+};
+
 // return a list of nodes that contains the top and left offsets
 export const parse = (tree) => {
   if (!tree) { return; }
@@ -16,13 +21,30 @@ export const parse = (tree) => {
     while (newQueue.length > 0) {
       cur = newQueue.splice(0, 1)[0];
       if (cur) {
+        const top = depth * 80;
+        const left = leftOffset * width / size + width / size / 2 - 20;
+        const edges = [];
+
+        bfs.push(cur.left);
+        if (cur.left) {
+          edges.push({
+            from: cur,
+            to: cur.left
+          });
+        }
+        bfs.push(cur.right);
+        if (cur.right) {
+          edges.push({
+            from: cur,
+            to: cur.right
+          });
+        }
         treeNodes.push({
           value: cur.value,
-          top: depth * 80,
-          left: leftOffset * width / size + width / size / 2 - 20,
+          top: top,
+          left: left ,
+          edges: edges,
         });
-        bfs.push(cur.left);
-        bfs.push(cur.right);
       } else {
         bfs.push(null);
         bfs.push(null);
@@ -34,37 +56,32 @@ export const parse = (tree) => {
       break;
     }
   }
-  getWidth();
   return treeNodes;
 };
 
-export const getEdges = (tree) => {
-  if (!tree) { return; }
-  const bfs = [tree];
-  const edgeList = [];
-  let cur;
+// export const getEdges = (tree) => {
+//   if (!tree) { return; }
+//   const bfs = [tree];
+//   const edgeList = [];
+//   let cur;
 
-  while (bfs.length > 0) {
-    cur = bfs.splice(0, 1)[0];
-    if (cur.left) {
-      bfs.push(cur.left);
-      edgeList.push({
-        from: cur,
-        to: cur.left
-      });
-    }
-    if (cur.right) {
-      bfs.push(cur.right);
-      edgeList.push({
-        from: cur,
-        to: cur.right
-      });
-    }
-  }
-  return edgeList;
-};
+//   while (bfs.length > 0) {
+//     cur = bfs.splice(0, 1)[0];
+//     if (cur.left) {
+//       bfs.push(cur.left);
+//       edgeList.push({
+//         from: cur,
+//         to: cur.left
+//       });
+//     }
+//     if (cur.right) {
+//       bfs.push(cur.right);
+//       edgeList.push({
+//         from: cur,
+//         to: cur.right
+//       });
+//     }
+//   }
+//   return edgeList;
+// };
 
-const getWidth = () => {
-  const rect = document.getElementById('tree-editor').getBoundingClientRect();
-  return rect.width;
-};

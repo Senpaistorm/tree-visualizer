@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import BinarySearchTree from '../../models/BinarySearchTree';
-import {parse, getEdges} from '../../util';
+import {parse} from '../../util';
 import { setDefaultService } from 'selenium-webdriver/chrome';
 
 @Component({
@@ -15,6 +15,9 @@ export class BinarySearchTreeComponent implements OnInit {
   treeEdges: any = [];
   rootValue = new FormControl();
   rect = null;
+
+  alertMsg = '';
+  alertShow = false;
   constructor() { }
 
   ngOnInit() {
@@ -47,33 +50,16 @@ export class BinarySearchTreeComponent implements OnInit {
   }
 
   setTree() {
-    console.log(this.tree);
-    this.treeNodes = parse(this.tree);
     Promise.resolve(parse(this.tree))
       .then((res) => {
         this.treeNodes = res;
-        return getEdges(this.tree);
-      })
-      .then((res) => {
-        console.log(res);
-        this.treeEdges = res;
-        return res;
-      })
-      .then((res) => {
-        console.log(this.treeEdges[0].from);
-        console.log(document.getElementById(`node-${this.treeEdges[0].from.value}`));
-        //this.setEdges();
+        this.setEdges();
       });
   }
 
   setEdges(){
-    const from = this.treeEdges[0].from;
-    console.log(from);
-    const to = this.treeEdges[0].to;
-    console.log(`node-${from.value}`);
-    console.log(document.getElementById(`node-${from.value}`));
-    const x1 = document.getElementById(`node-${from.value}`).offsetLeft;
-    const y1 = document.getElementById(`node-${from.value}`).offsetHeight;
-    console.log(document.getElementById(`node-${to.value}`));
+    this.treeNodes.forEach((node) => {
+      console.log(node.edges);
+    });
   }
 }
