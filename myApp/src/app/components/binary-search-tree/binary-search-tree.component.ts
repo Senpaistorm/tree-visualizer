@@ -15,6 +15,7 @@ export class BinarySearchTreeComponent implements OnInit {
   treeEdges: any = [];
   rootValue = new FormControl();
   rect = null;
+  nodeSize = 40;
 
   alertMsg = '';
   alertShow = false;
@@ -53,13 +54,20 @@ export class BinarySearchTreeComponent implements OnInit {
     Promise.resolve(parse(this.tree))
       .then((res) => {
         this.treeNodes = res;
+      })
+      .then(() => {
         this.setEdges();
       });
   }
 
   setEdges(){
+    console.log(this.treeEdges);
+    this.treeEdges = [];
     this.treeNodes.forEach((node) => {
       console.log(node.edges);
+      this.treeEdges = this.treeEdges.concat(node.edges);
     });
+
   }
+
 }

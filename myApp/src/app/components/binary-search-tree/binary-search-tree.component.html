@@ -1,33 +1,35 @@
 <div class="row">
-  <div class="col-3 sidenav">.
-    <h2>
-      Binary Search Tree
-    </h2>
+  <div class="col-12 sidenav">.
     <label>Insert node</label>
     <input type="number" [formControl]="rootValue" />
-    <button type="button"
+    <button class="btn btn-primary" type="button"
     (click)="addNode($event)">
       Go
     </button>
-    <button type="button"
+    <button class="btn btn-primary" type="button"
     (click)="generateRandomTree($event)">
       Generate Random tree
     </button>
-    <button type="button"
+    <button class="btn btn-primary" type="button"
     (click)="setEdges()">
       setedges
     </button>
   </div>
-  <div id="tree-editor" class="col-9">
+  <div class="col-12" id="tree-editor">
     <div id="node-{{node.value}}" class="node" *ngFor="let node of treeNodes"
       [style.top.px]="node.top"
-      [style.left.px]="node.left"
+      [style.left.px]="node.left - nodeSize / 2"
     >
     {{node.value}}
     </div>
     <svg height="510" width="1500">
-    <line id="edge-1-2" x1="557.5" y1="20" x2="268" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
-    <line id="edge-2-3" x1="500.5" y1="20" x2="268" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
+      <line id="edge-{{edge.from.value}}-{{edge.to.value}}" *ngFor="let edge of treeEdges"
+        [attr.x1]="edge.x1"
+        [attr.y1]="edge.y1 + nodeSize / 2"
+        [attr.x2]="edge.x2"
+        [attr.y2]="edge.y2 + nodeSize / 2"
+        style="stroke:rgb(0,0,0);stroke-width:2"
+      />
     </svg>
 
   </div>

@@ -22,21 +22,29 @@ export const parse = (tree) => {
       cur = newQueue.splice(0, 1)[0];
       if (cur) {
         const top = depth * 80;
-        const left = leftOffset * width / size + width / size / 2 - 20;
+        const left = leftOffset * width / size + width / size / 2;
         const edges = [];
 
         bfs.push(cur.left);
         if (cur.left) {
           edges.push({
             from: cur,
-            to: cur.left
+            x1: left,
+            y1: top,
+            to: cur.left,
+            x2: left - width / (size * 4),
+            y2: (depth + 1) * 80,
           });
         }
         bfs.push(cur.right);
         if (cur.right) {
           edges.push({
             from: cur,
-            to: cur.right
+            x1: left,
+            y1: top,
+            to: cur.right,
+            x2: left + width / (size * 4),
+            y2: (depth + 1) * 80,
           });
         }
         treeNodes.push({
