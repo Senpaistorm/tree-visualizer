@@ -1,0 +1,8 @@
+<div *ngIf="isActive" @flyInOut
+  id="alertPopup" class="alert alert-danger" role="alert" >
+  {{alertMessage}}
+  <a href="#"
+    (click)="onAlertDismiss()">
+    Dismiss
+  </a>
+</div>

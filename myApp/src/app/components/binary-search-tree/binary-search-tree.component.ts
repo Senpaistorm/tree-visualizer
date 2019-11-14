@@ -14,6 +14,7 @@ export class BinarySearchTreeComponent implements OnInit {
   treeNodes: any = [];
   treeEdges: any = [];
   rootValue = new FormControl();
+  deleteValue = new FormControl();
   rect = null;
   nodeSize = 40;
 
@@ -27,7 +28,9 @@ export class BinarySearchTreeComponent implements OnInit {
 
   addNode() {
     if (!this.rootValue.value) {
-      console.error("invalid input");
+      this.alertShow = true;
+      this.alertMsg = 'Invalid input - node value cannot be empty.';
+      return;
     }
     console.log(this.rootValue);
     if (this.tree == null) {
@@ -38,6 +41,14 @@ export class BinarySearchTreeComponent implements OnInit {
     console.log(this.tree);
     // animation
     this.treeNodes = parse(this.tree);
+  }
+
+  deleteNode() {
+    if (!this.deleteValue.value) {
+      this.alertShow = true;
+      this.alertMsg = 'Invalid input - node value cannot be empty.';
+      return;
+    }
   }
 
   generateRandomTree() {
@@ -67,7 +78,9 @@ export class BinarySearchTreeComponent implements OnInit {
       console.log(node.edges);
       this.treeEdges = this.treeEdges.concat(node.edges);
     });
-
   }
 
+  onAlertDismiss() {
+    this.alertShow = false;
+  }
 }

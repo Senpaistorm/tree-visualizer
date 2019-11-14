@@ -1,0 +1,18 @@
+<div class="row">
+<div class="col-4">
+  <label>Insert node</label>
+  <input type="number" [formControl]="insertValue" />
+  <button class="btn btn-primary" type="button"
+  (click)="addNode($event)">
+    Go
+  </button>
+</div>
+<div class="col-4">
+  <label>Delete node</label>
+  <input type="number" [formControl]="deleteValue" />
+  <button class="btn btn-primary" type="button"
+  (click)="deleteNode($event)">
+    Go
+  </button>
+</div>
+</div>

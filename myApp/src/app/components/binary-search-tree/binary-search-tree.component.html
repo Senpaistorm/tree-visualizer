@@ -1,9 +1,15 @@
 <div class="row">
-  <div class="col-12 sidenav">.
+  <div class="col-12 sidenav">
     <label>Insert node</label>
     <input type="number" [formControl]="rootValue" />
     <button class="btn btn-primary" type="button"
     (click)="addNode($event)">
+      Go
+    </button>
+    <label>Delete node</label>
+    <input type="number" [formControl]="deleteValue" />
+    <button class="btn btn-primary" type="button"
+    (click)="deleteNode($event)">
       Go
     </button>
     <button class="btn btn-primary" type="button"
@@ -15,6 +21,7 @@
       setedges
     </button>
   </div>
+
   <div class="col-12" id="tree-editor">
     <div id="node-{{node.value}}" class="node" *ngFor="let node of treeNodes"
       [style.top.px]="node.top"
@@ -35,3 +42,9 @@
   </div>
 
 </div>
+
+<app-alert-popup
+  [isActive]="alertShow"
+  [alertMessage]="alertMsg"
+  (alertDismiss)="onAlertDismiss($event)">
+</app-alert-popup>
