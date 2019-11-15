@@ -4,6 +4,7 @@ A web app that helps understand difficult concepts behind the tree data structur
 To run this project in your local machine, you need node.js and the angular CLI installed first. Then run
 ```
 cd myApp
+npm install
 ng serve -o
 ```
 
