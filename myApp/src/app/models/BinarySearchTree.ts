@@ -25,6 +25,34 @@ export default class BinarySearchTree extends Tree {
     }
 
     delete(value: number) {
-      return false;
+      let root = this;
+      if (this.value === value) {
+        if (!this.left && !this.right){
+          root = null;
+        } else if (!this.right) {
+          root = this.left;
+        } else if (!this.left) {
+          root = this.right;
+        } else {
+          const min = root.right.minValue();
+          root.right = root.right.delete(min);
+          root.value = min;
+        }
+      }
+      if (this.value > value && this.left) {
+        this.left = this.left.delete(value);
+      }
+      if (this.value < value && this.right) {
+        this.right = this.right.delete(value);
+      }
+      return root;
+    }
+
+    minValue() {
+      if (this.left) {
+        return this.left.minValue();
+      } else {
+        return this.value;
+      }
     }
 }

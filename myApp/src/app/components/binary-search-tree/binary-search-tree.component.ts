@@ -36,11 +36,10 @@ export class BinarySearchTreeComponent implements OnInit {
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;
     }
-    let res = true;
     if (this.tree == null) {
       this.tree = new BinarySearchTree(this.rootValue.value);
     } else {
-      res = this.tree.insert(this.rootValue.value);
+      this.tree.insert(this.rootValue.value);
     }
     // animation
     this.setTree();
@@ -52,6 +51,14 @@ export class BinarySearchTreeComponent implements OnInit {
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;
     }
+    if (this.tree == null) {
+      this.alertShow = true;
+      this.alertMsg = 'Invalid operation - tree is empty.';
+      return;
+    } else {
+      this.tree = this.tree.delete(this.deleteValue.value);
+    }
+    this.setTree();
   }
 
   generateRandomTree() {

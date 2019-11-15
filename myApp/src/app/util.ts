@@ -5,7 +5,7 @@ const getWidth = () => {
 
 // return a list of nodes that contains the top and left offsets
 export const parse = (tree) => {
-  if (!tree) { return; }
+  if (!tree) { return []; }
   let depth = 0;
   let bfs = [tree];
   let newQueue;

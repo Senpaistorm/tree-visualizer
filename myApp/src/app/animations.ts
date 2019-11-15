@@ -56,7 +56,6 @@ const highlightNodeList = async (nodeList, speed= 1000) => {
   for (let index = 0; index < nodeList.length; index++) {
     const val = await getValue(index);
     unhighlightNode(prev);
-    console.log(val);
     highlightNode(val);
     prev = val;
   }

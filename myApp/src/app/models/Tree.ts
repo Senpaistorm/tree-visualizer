@@ -1,7 +1,7 @@
 export abstract class Tree {
     value: number;
-    left: Tree;
-    right: Tree;
+    left;
+    right;
 
     constructor(value) {
         this.value = value;
