@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import BinarySearchTree from '../../models/BinarySearchTree';
 import {parse} from '../../util';
 import { setDefaultService } from 'selenium-webdriver/chrome';
+import { highlightNode, highlightEdge, preorderAnimation, inorderAnimation, postorderAnimation } from '../../animations';
 
 @Component({
   selector: 'app-binary-search-tree',
@@ -22,8 +23,11 @@ export class BinarySearchTreeComponent implements OnInit {
   alertShow = false;
   constructor() { }
 
+  height = null;
+  width = null;
   ngOnInit() {
-
+    this.height = document.documentElement.clientHeight;
+    this.width = document.getElementById('tree-editor').offsetWidth;
   }
 
   addNode() {
@@ -32,15 +36,14 @@ export class BinarySearchTreeComponent implements OnInit {
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;
     }
-    console.log(this.rootValue);
+    let res = true;
     if (this.tree == null) {
       this.tree = new BinarySearchTree(this.rootValue.value);
     } else {
-      this.tree.insert(this.rootValue.value);
+      res = this.tree.insert(this.rootValue.value);
     }
-    console.log(this.tree);
     // animation
-    this.treeNodes = parse(this.tree);
+    this.setTree();
   }
 
   deleteNode() {
@@ -71,16 +74,34 @@ export class BinarySearchTreeComponent implements OnInit {
       });
   }
 
-  setEdges(){
-    console.log(this.treeEdges);
+  setEdges() {
     this.treeEdges = [];
     this.treeNodes.forEach((node) => {
-      console.log(node.edges);
       this.treeEdges = this.treeEdges.concat(node.edges);
     });
   }
 
   onAlertDismiss() {
     this.alertShow = false;
+  }
+
+  highlightNode(value: any = null) {
+    highlightNode(value);
+  }
+
+  highlightEdge(from: any = null, to: any = null) {
+    highlightEdge(from, to);
+  }
+
+  preorder() {
+    preorderAnimation(this.tree);
+  }
+
+  inorder() {
+    inorderAnimation(this.tree);
+  }
+
+  postorder() {
+    postorderAnimation(this.tree);
   }
 }

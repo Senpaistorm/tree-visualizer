@@ -16,3 +16,16 @@
   margin: 10px;
   padding: 0;
 }
+
+.hl-node{
+  border: 3px solid rgb(255, 136, 0);
+}
+
+.edge{
+  stroke:rgb(0,0,0);
+  stroke-width: 2;
+}
+
+.hl-edge{
+  stroke: orange;
+}

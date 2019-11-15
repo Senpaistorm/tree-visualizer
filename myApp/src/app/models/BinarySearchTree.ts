@@ -22,7 +22,6 @@ export default class BinarySearchTree extends Tree {
               return true;
           }
       }
-      return false;
     }
 
     delete(value: number) {

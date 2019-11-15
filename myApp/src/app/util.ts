@@ -67,6 +67,32 @@ export const parse = (tree) => {
   return treeNodes;
 };
 
+export const preorder = (tree, res= []) => {
+  if (tree) {
+    res.push(tree.value);
+    preorder(tree.left, res);
+    preorder(tree.right, res);
+  }
+  return res;
+};
+
+export const inorder = (tree, res= []) => {
+  if (tree) {
+    inorder(tree.left, res);
+    res.push(tree.value);
+    inorder(tree.right, res);
+  }
+  return res;
+};
+
+export const postorder = (tree, res= []) => {
+  if (tree) {
+    postorder(tree.left, res);
+    postorder(tree.right, res);
+    res.push(tree.value);
+  }
+  return res;
+};
 // export const getEdges = (tree) => {
 //   if (!tree) { return; }
 //   const bfs = [tree];
