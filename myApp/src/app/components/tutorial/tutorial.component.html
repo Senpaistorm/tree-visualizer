@@ -1,3 +1,11 @@
-<p>
-  tutorial works!
-</p>
+<div class="row justify-content-around">
+  <div class="col-md-3 col-sm-12 card"
+    (click)="changeActiveOption(i)"
+    *ngFor="let treeOption of treeOptions; let i = index">
+    <img class="card-img-top" src="{{treeOption.img}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{treeOption.name}}</h5>
+      <p class="card-text">{{treeOption.description}}</p>
+    </div>
+  </div>
+</div>

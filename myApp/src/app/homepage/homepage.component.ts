@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { treeOptionsData } from '../treeOptions';
 
 @Component({
   selector: 'app-homepage',
@@ -7,25 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  treeOptions = [
-  {
-    name: 'Binary Search Tree'
-  },
-  {
-    name:'AVL Tree'
-  },
-  {
-    name:'Heap'
-  }
-  ]
+  treeOptions = treeOptionsData;
 
   activeOption = null;
   ngOnInit() {
   }
 
-  selectActiveOption($event){
-    console.log($event);
-    this.activeOption = this.treeOptions[$event];
+  selectActiveOption($event) {
+    if ($event === -1) {
+      this.activeOption = null;
+    } else {
+      this.activeOption = this.treeOptions[$event];
+    }
   }
 
 }

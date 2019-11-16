@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-workspace',
@@ -8,8 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WorkspaceComponent implements OnInit {
 
   @Input() activeOption;
+  @Input() treeOptions;
+  @Output() selectActiveOption: EventEmitter<string> = new EventEmitter();
 
   ngOnInit() {
+  }
+
+  changeActiveOption($event) {
+    console.log($event);
+    this.selectActiveOption.emit($event);
   }
 
 }

@@ -15,12 +15,14 @@ export class NavbarComponent implements OnInit {
     console.log(this.treeOptions);
   }
 
-  changeSelection(i){
-    for(let i = 0; i < this.treeOptions.length;i++){
+  changeSelection(i) {
+    for (let i = 0; i < this.treeOptions.length;i++){
       document.getElementById(`navoption-${i}`).style.background = 'white';
     }
     const cur = document.getElementById(`navoption-${i}`);
-    cur.style.background = 'rgb(230,230,230)';
+    if (cur) {
+      cur.style.background = 'rgb(230,230,230)';
+    }
     this.selectActiveOption.emit(i);
   }
 }

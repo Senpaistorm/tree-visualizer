@@ -30,6 +30,11 @@ export class BinarySearchTreeComponent implements OnInit {
     this.width = document.getElementById('tree-editor').offsetWidth;
   }
 
+  onResize() {
+    this.height = Math.max(this.height, document.documentElement.clientHeight);
+    this.width = Math.max(this.width, document.getElementById('tree-editor').offsetWidth);
+  }
+
   addNode() {
     if (!this.rootValue.value) {
       this.alertShow = true;

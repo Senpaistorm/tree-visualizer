@@ -3,5 +3,7 @@
   (selectActiveOption)="selectActiveOption($event)">
 </app-navbar>
 <app-workspace
-  [activeOption]="activeOption">
+  [treeOptions]="treeOptions"
+  [activeOption]="activeOption"
+  (selectActiveOption)="selectActiveOption($event)">
 </app-workspace>

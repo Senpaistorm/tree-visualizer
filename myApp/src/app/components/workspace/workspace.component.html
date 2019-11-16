@@ -1,15 +1,18 @@
-
-<app-tutorial *ngIf="activeOption == null">
+<app-tutorial *ngIf="activeOption == null"
+  (selectActiveOption)="changeActiveOption($event)"
+  [treeOptions]="treeOptions"
+>
 </app-tutorial>
 <div *ngIf="activeOption && activeOption.name == 'Binary Search Tree'">
   <app-binary-search-tree>
   </app-binary-search-tree>
 </div>
+
 <div *ngIf="activeOption && activeOption.name == 'AVL Tree'">
   {{activeOption.name}} is coming soon!
 
 </div>
+
 <div *ngIf="activeOption && activeOption.name == 'Heap'">
   {{activeOption.name}}  is coming soon!
-
 </div>

@@ -1,0 +1,15 @@
+.card{
+  margin: 20px;
+  cursor: pointer;
+  transition: transform .5s ease;
+}
+
+.card img{
+  height: 300px;
+  width: auto;
+}
+
+.card:hover{
+  box-shadow: rgb(209, 209, 213) 0px 6px 15px;
+  transform: scale(1.05);
+}

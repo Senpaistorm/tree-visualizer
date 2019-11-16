@@ -1,37 +1,45 @@
 <div class="row">
-  <div class="col-12 sidenav">
-    <label>Insert node</label>
-    <input type="number" [formControl]="rootValue" />
-    <button class="btn btn-primary" type="button"
-    (click)="addNode($event)">
-      Go
-    </button>
-    <label>Delete node</label>
-    <input type="number" [formControl]="deleteValue" />
-    <button class="btn btn-primary" type="button"
-    (click)="deleteNode($event)">
-      Go
-    </button>
-    <button class="btn btn-primary" type="button"
-    (click)="generateRandomTree($event)">
-      Generate Random tree
-    </button>
-    <button class="btn btn-primary" type="button"
-    (click)="inorder()">
-      Inorder
-    </button>
-    <button class="btn btn-primary" type="button"
-    (click)="preorder()">
-      Preorder
-    </button>
-    <button class="btn btn-primary" type="button"
-    (click)="postorder()">
-      Postorder
-    </button>
+  <div class="col-12 sidenav row">
+    <div class="input-group col-3">
+      <input class="form-control" type="number" [formControl]="rootValue"
+      placeholder="Insert Node"/>
+      <button class="btn btn-primary" type="button"
+      (click)="addNode($event)">
+        Confirm
+      </button>
+      </div>
+    <div class="input-group col-3">
+      <input class="form-control" type="number" [formControl]="deleteValue"
+      placeholder="Delete Node"/>
+      <button class="btn btn-primary" type="button"
+      (click)="deleteNode($event)">
+        Confirm
+      </button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-primary" type="button"
+      (click)="generateRandomTree($event)">
+        Generate Random tree
+      </button>
+    </div>
+    <div class="col-3 btn-group" role="group" aria-label="traversal-btns">
+      <button class="btn btn-primary" type="button"
+      (click)="inorder()">
+        Inorder
+      </button>
+      <button class="btn btn-primary" type="button"
+      (click)="preorder()">
+        Preorder
+      </button>
+      <button class="btn btn-primary" type="button"
+      (click)="postorder()">
+        Postorder
+      </button>
+    </div>
   </div>
 
-  <div class="col-12" id="tree-editor">
-    <div id="node-{{node.value}}" class="node" *ngFor="let node of treeNodes"
+  <div class="col-12" (window:resize)="onResize()" id="tree-editor">
+    <div id="node-{{node.value}}" class="node fadeIn" *ngFor="let node of treeNodes"
       [style.top.px]="node.top"
       [style.left.px]="node.left - nodeSize / 2"
     >
