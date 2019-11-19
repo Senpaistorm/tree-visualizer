@@ -27,6 +27,7 @@
 }
 
 .hl-edge{
+  stroke-width: 3px;
   stroke: orange;
 }
 

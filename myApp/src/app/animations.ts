@@ -31,14 +31,14 @@ const unhighlightNode = (value = null) => {
 };
 
 export const highlightEdge = (from: any = null, to: any = null) => {
-  const nodeEle = document.getElementById(`edge-${from}-${to}`);
+  const nodeEle = document.getElementById(`edge-${from.value}-${to.value}`);
   if (nodeEle) {
     nodeEle.classList.add('hl-edge');
   }
 };
 
 const unhighlightEdge = (from: any = null, to: any = null) => {
-  const nodeEle = document.getElementById(`edge-${from}-${to}`);
+  const nodeEle = document.getElementById(`edge-${from.value}-${to.value}`);
   if (nodeEle) {
     nodeEle.classList.remove('hl-edge');
   }
@@ -76,4 +76,38 @@ export const inorderAnimation = async (tree, speed= 1000) => {
 export const postorderAnimation = async (tree, speed= 1000) => {
   const post = postorder(tree);
   highlightNodeList(post);
+};
+
+
+export const applyAnimation = (animateObj) => {
+  const className = animateObj.className;
+  switch (className) {
+    case 'node':
+      const value = animateObj.arg1.value;
+      highlightNode(value);
+      break;
+    case 'edge':
+      const from = animateObj.arg1;
+      const to = animateObj.arg2;
+      highlightEdge(from, to);
+      break;
+    default:
+      console.error('animation not supported');
+  }
+};
+
+export const applyAnimationList = async (animationList, speed= 500) => {
+  const sleep = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  };
+  const getValue = i => {
+    return sleep(speed).then(v => animationList[i]);
+  };
+
+  for (let index = 0; index < animationList.length; index++) {
+    const cur = await getValue(index);
+    console.log(cur);
+    applyAnimation(cur);
+
+  }
 };

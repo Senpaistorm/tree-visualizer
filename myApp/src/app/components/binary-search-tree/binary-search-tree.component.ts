@@ -3,7 +3,10 @@ import { FormControl } from '@angular/forms';
 import BinarySearchTree from '../../models/BinarySearchTree';
 import {parse} from '../../util';
 import { setDefaultService } from 'selenium-webdriver/chrome';
-import { highlightNode, highlightEdge, preorderAnimation, inorderAnimation, postorderAnimation } from '../../animations';
+import { highlightNode, highlightEdge,
+  preorderAnimation, inorderAnimation, postorderAnimation,
+  applyAnimationList
+ } from '../../animations';
 
 @Component({
   selector: 'app-binary-search-tree',
@@ -36,6 +39,7 @@ export class BinarySearchTreeComponent implements OnInit {
   }
 
   addNode() {
+    let animationList;
     if (!this.rootValue.value) {
       this.alertShow = true;
       this.alertMsg = 'Invalid input - node value cannot be empty.';
@@ -44,8 +48,10 @@ export class BinarySearchTreeComponent implements OnInit {
     if (this.tree == null) {
       this.tree = new BinarySearchTree(this.rootValue.value);
     } else {
-      this.tree.insert(this.rootValue.value);
+      animationList = this.tree.insert(this.rootValue.value).animations;
     }
+    console.log(animationList);
+    applyAnimationList(animationList);
     // animation
     this.setTree();
   }

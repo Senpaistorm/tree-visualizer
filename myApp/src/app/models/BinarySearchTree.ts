@@ -1,28 +1,51 @@
 import {Tree} from './Tree';
+import { animation } from '@angular/core/src/animation/dsl';
 
 export default class BinarySearchTree extends Tree {
-  animations: any = [];
   constructor(value: number) {
       super(value);
   }
 
-  insert(value: number) {
+  insert(value: number, animations= []) {
+    animations.push({
+      className: 'node',
+      arg1: this
+    });
     if (this.value > value) {
         if (this.left) {
-            this.left.insert(value);
+          animations.push({
+            className: 'edge',
+            arg1: this,
+            arg2: this.left,
+          });
+          this.left.insert(value, animations);
         } else {
-            this.left = new BinarySearchTree(value);
-            return true;
+          this.left = new BinarySearchTree(value);
+          animations.push({
+            className: 'node',
+            arg1: this.left
+          });
         }
     }
     if (this.value < value) {
         if (this.right) {
-            this.right.insert(value);
+          animations.push({
+            className: 'edge',
+            arg1: this,
+            arg2: this.right,
+          });
+          this.right.insert(value, animations);
         } else {
-            this.right = new BinarySearchTree(value);
-            return true;
+          this.right = new BinarySearchTree(value);
+          animations.push({
+            className: 'node',
+            arg1: this.right
+          });
         }
     }
+    return {
+      animations: animations
+    };
   }
 
   delete(value: number) {
@@ -56,4 +79,11 @@ export default class BinarySearchTree extends Tree {
       return this.value;
     }
   }
+
+  // getAnimations() {
+  //   // clone the animations array and return it after resetting
+  //   const animations = this.animations.slice(0);
+  //   this.animations = [];
+  //   return animations;
+  // }
 }
