@@ -8,8 +8,4 @@ export abstract class Tree {
         this.left = null;
         this.right = null;
     }
-
-    abstract insert(value: number);
-    abstract delete(value: number);
-
 }

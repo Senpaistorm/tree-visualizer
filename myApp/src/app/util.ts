@@ -93,6 +93,13 @@ export const postorder = (tree, res= []) => {
   }
   return res;
 };
+
+export const getHeight = (node) => {
+  if (!node) {
+    return 0;
+  }
+  return node.height;
+}
 // export const getEdges = (tree) => {
 //   if (!tree) { return; }
 //   const bfs = [tree];

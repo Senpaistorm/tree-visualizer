@@ -27,7 +27,6 @@ export class ToolbarComponent implements OnInit {
   }
 
   deleteNodeEvent() {
-    console.log(this.deleteValue);
     this.deleteNode.emit(this.deleteValue.value);
   }
 

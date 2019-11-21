@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import BinarySearchTree from '../../models/BinarySearchTree';
+import {insert, deleteNode, getAnimations, clearAnimations} from '../../models/BinarySearchTree';
 import {parse} from '../../util';
 import { preorderAnimation, inorderAnimation, postorderAnimation,
   applyAnimationList
  } from '../../animations';
+import BinarySearchTreeNode from '../../models/BinarySearchTreeNode';
 
 @Component({
   selector: 'app-binary-search-tree',
@@ -11,7 +12,7 @@ import { preorderAnimation, inorderAnimation, postorderAnimation,
   styleUrls: ['./binary-search-tree.component.css']
 })
 export class BinarySearchTreeComponent implements OnInit {
-  tree: BinarySearchTree = null;
+  tree: BinarySearchTreeNode = null;
   treeNodes: any = [];
   treeEdges: any = [];
   rect = null;
@@ -42,11 +43,8 @@ export class BinarySearchTreeComponent implements OnInit {
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;
     }
-    if (this.tree == null) {
-      this.tree = new BinarySearchTree(value);
-    } else {
-      animationList = this.tree.insert(value).animations;
-    }
+    this.tree = insert(this.tree, value);
+    animationList = getAnimations();
     console.log(animationList);
     applyAnimationList(animationList);
     // animation
@@ -65,18 +63,19 @@ export class BinarySearchTreeComponent implements OnInit {
       this.alertMsg = 'Invalid operation - tree is empty.';
       return;
     } else {
-      this.tree = this.tree.delete(value);
+      this.tree = deleteNode(this.tree, value);
     }
     this.setTree();
   }
 
   generateRandomTree() {
-    let rand = Math.floor((Math.random() * 100) + 1);
-    this.tree = new BinarySearchTree(rand);
+    let rand;
+    this.tree = null;
     for (let i = 0; i < 10; i++) {
       rand = Math.floor((Math.random() * 100) + 1);
-      this.tree.insert(rand);
+      this.tree = insert(this.tree, rand);
     }
+    clearAnimations();
     this.setTree();
   }
 

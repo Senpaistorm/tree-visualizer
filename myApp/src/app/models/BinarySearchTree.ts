@@ -1,89 +1,81 @@
-import {Tree} from './Tree';
-import { animation } from '@angular/core/src/animation/dsl';
+import BinarySearchTreeNode from './BinarySearchTreeNode';
 
-export default class BinarySearchTree extends Tree {
-  constructor(value: number) {
-      super(value);
+let animations = [];
+
+export const insert = (node: BinarySearchTreeNode, value: number) => {
+  animations.push({
+    className: 'node',
+    arg1: node
+  });
+  if (!node) {
+    return new BinarySearchTreeNode(value);
   }
-
-  insert(value: number, animations= []) {
+  if (node.value > value) {
     animations.push({
-      className: 'node',
-      arg1: this
+      className: 'edge',
+      arg1: node,
+      arg2: node.left,
     });
-    if (this.value > value) {
-        if (this.left) {
-          animations.push({
-            className: 'edge',
-            arg1: this,
-            arg2: this.left,
-          });
-          this.left.insert(value, animations);
-        } else {
-          this.left = new BinarySearchTree(value);
-          animations.push({
-            className: 'node',
-            arg1: this.left
-          });
-        }
-    }
-    if (this.value < value) {
-        if (this.right) {
-          animations.push({
-            className: 'edge',
-            arg1: this,
-            arg2: this.right,
-          });
-          this.right.insert(value, animations);
-        } else {
-          this.right = new BinarySearchTree(value);
-          animations.push({
-            className: 'node',
-            arg1: this.right
-          });
-        }
-    }
-    return {
-      animations: animations
-    };
-  }
+    node.left = insert(node.left, value);
 
-  delete(value: number, animations= []) {
-    let root = this;
-    if (this.value === value) {
-      if (!this.left && !this.right) {
-        root = null;
-      } else if (!this.right) {
-        root = this.left;
-      } else if (!this.left) {
-        root = this.right;
-      } else {
-        const min = root.right.minValue();
-        root.right = root.right.delete(min);
-        root.value = min;
-      }
-    }
-    if (this.value > value && this.left) {
-      this.left = this.left.delete(value);
-    }
-    if (this.value < value && this.right) {
-      this.right = this.right.delete(value);
-    }
-    return root;
   }
+  if (node.value < value) {
+    animations.push({
+      className: 'edge',
+      arg1: node,
+      arg2: node.right,
+    });
+    node.right = insert(node.right, value);
+  }
+  return node;
+};
 
-  minValue() {
-    if (this.left) {
-      return this.left.minValue();
+export const clearAnimations = () => {
+  animations = [];
+};
+
+export const getAnimations = () => {
+  const ret = animations.slice(0);
+  clearAnimations();
+  return ret;
+};
+
+const minValue = (node) => {
+  if (node.left) {
+    return minValue(node.left);
+  } else {
+    return node.value;
+  }
+};
+
+export const deleteNode = (node, value: number) => {
+  console.log(node);
+  console.log(node.value === value);
+  if (!node) {
+    return null;
+  }
+  if (node.value === value) {
+    if (!node.left && !node.right) {
+      return null;
+    } else if (!node.right) {
+      node = node.left;
+    } else if (!node.left) {
+      node = node.right;
     } else {
-      return this.value;
+      const min = minValue(node.right);
+      node.right = deleteNode(node.right, min);
+      node.value = min;
     }
   }
+  if (node.value > value && node.left) {
+    node.left = deleteNode(node.left, value);
+  }
+  if (node.value < value && node.right) {
+    node.right = deleteNode(node.right, value);
+  }
+  return node;
+};
 
-  // getAnimations() {
-  //   // clone the animations array and return it after resetting
-  //   const animations = this.animations.slice(0);
-  //   this.animations = [];
-  //   return animations;
-  // }
-}
+
+
+
