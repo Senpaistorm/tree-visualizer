@@ -13,6 +13,7 @@ import { BinarySearchTreeComponent } from './components/binary-search-tree/binar
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AlertPopupComponent } from './components/alert-popup/alert-popup.component';
+import { AvlTreeComponent } from './components/avl-tree/avl-tree.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AlertPopupComponent } from './components/alert-popup/alert-popup.compon
     BinarySearchTreeComponent,
     SidenavComponent,
     ToolbarComponent,
-    AlertPopupComponent
+    AlertPopupComponent,
+    AvlTreeComponent
   ],
   imports: [
     BrowserModule,

@@ -48,7 +48,7 @@ export default class BinarySearchTree extends Tree {
     };
   }
 
-  delete(value: number) {
+  delete(value: number, animations= []) {
     let root = this;
     if (this.value === value) {
       if (!this.left && !this.right) {

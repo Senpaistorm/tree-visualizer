@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import BinarySearchTree from '../../models/BinarySearchTree';
 import {parse} from '../../util';
-import { setDefaultService } from 'selenium-webdriver/chrome';
-import { highlightNode, highlightEdge,
-  preorderAnimation, inorderAnimation, postorderAnimation,
+import { preorderAnimation, inorderAnimation, postorderAnimation,
   applyAnimationList
  } from '../../animations';
 
@@ -17,10 +14,9 @@ export class BinarySearchTreeComponent implements OnInit {
   tree: BinarySearchTree = null;
   treeNodes: any = [];
   treeEdges: any = [];
-  rootValue = new FormControl();
-  deleteValue = new FormControl();
   rect = null;
   nodeSize = 40;
+  defSpeed = 500;
 
   alertMsg = '';
   alertShow = false;
@@ -38,17 +34,18 @@ export class BinarySearchTreeComponent implements OnInit {
     this.width = Math.max(this.width, document.getElementById('tree-editor').offsetWidth);
   }
 
-  addNode() {
+  addNode($event) {
+    const value = $event;
     let animationList;
-    if (!this.rootValue.value) {
+    if (!value) {
       this.alertShow = true;
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;
     }
     if (this.tree == null) {
-      this.tree = new BinarySearchTree(this.rootValue.value);
+      this.tree = new BinarySearchTree(value);
     } else {
-      animationList = this.tree.insert(this.rootValue.value).animations;
+      animationList = this.tree.insert(value).animations;
     }
     console.log(animationList);
     applyAnimationList(animationList);
@@ -56,8 +53,9 @@ export class BinarySearchTreeComponent implements OnInit {
     this.setTree();
   }
 
-  deleteNode() {
-    if (!this.deleteValue.value) {
+  deleteNode($event) {
+    const value = $event;
+    if (!value) {
       this.alertShow = true;
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;
@@ -67,7 +65,7 @@ export class BinarySearchTreeComponent implements OnInit {
       this.alertMsg = 'Invalid operation - tree is empty.';
       return;
     } else {
-      this.tree = this.tree.delete(this.deleteValue.value);
+      this.tree = this.tree.delete(value);
     }
     this.setTree();
   }
@@ -101,14 +99,6 @@ export class BinarySearchTreeComponent implements OnInit {
 
   onAlertDismiss() {
     this.alertShow = false;
-  }
-
-  highlightNode(value: any = null) {
-    highlightNode(value);
-  }
-
-  highlightEdge(from: any = null, to: any = null) {
-    highlightEdge(from, to);
   }
 
   preorder() {
