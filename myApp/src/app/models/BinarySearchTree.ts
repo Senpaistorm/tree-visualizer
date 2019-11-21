@@ -49,8 +49,6 @@ const minValue = (node) => {
 };
 
 export const deleteNode = (node, value: number) => {
-  console.log(node);
-  console.log(node.value === value);
   if (!node) {
     return null;
   }

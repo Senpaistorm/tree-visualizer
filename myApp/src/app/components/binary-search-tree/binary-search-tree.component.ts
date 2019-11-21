@@ -101,14 +101,14 @@ export class BinarySearchTreeComponent implements OnInit {
   }
 
   preorder() {
-    preorderAnimation(this.tree);
+    preorderAnimation(this.tree, this.defSpeed);
   }
 
   inorder() {
-    inorderAnimation(this.tree);
+    inorderAnimation(this.tree, this.defSpeed);
   }
 
   postorder() {
-    postorderAnimation(this.tree);
+    postorderAnimation(this.tree, this.defSpeed);
   }
 }

@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+.node{
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: yellow;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#tree-editor{
+  margin: 10px;
+  padding: 0;
+}
+
+.hl-node{
+  border: 3px solid rgb(255, 136, 0);
+}
+
+.edge{
+  stroke:rgb(0,0,0);
+  stroke-width: 2;
+}
+
+.hl-edge{
+  stroke-width: 3px;
+  stroke: orange;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
