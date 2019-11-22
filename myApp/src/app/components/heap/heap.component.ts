@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import HeapNode from '../../models/HeapNode';
 import { insert, deleteNode } from '../../models/MaxHeap';
-import { parseHeap } from '../../util';
+import { parseHeap, heapToTree } from '../../util';
 import { preorderAnimation, inorderAnimation, postorderAnimation } from '../../animations';
 
 @Component({
@@ -10,7 +9,7 @@ import { preorderAnimation, inorderAnimation, postorderAnimation } from '../../a
   styleUrls: ['./heap.component.css']
 })
 export class HeapComponent implements OnInit {
-  tree: HeapNode = null;
+  tree = null;
   treeNodes: any = [];
   treeEdges: any = [];
   rect = null;
@@ -42,10 +41,6 @@ export class HeapComponent implements OnInit {
       return;
     }
     this.tree = insert(this.tree, value);
-    // animationList = getAnimations();
-    // console.log(animationList);
-    // applyAnimationList(animationList);
-    // animation
     this.setTree();
   }
 
@@ -73,7 +68,7 @@ export class HeapComponent implements OnInit {
       rand = Math.floor((Math.random() * 100) + 1);
       this.tree = insert(this.tree, rand);
     }
-    //clearAnimations();
+    console.log(heapToTree(this.tree, 0));
     this.setTree();
   }
 
@@ -99,15 +94,15 @@ export class HeapComponent implements OnInit {
   }
 
   preorder() {
-    preorderAnimation(this.tree, this.defSpeed);
+    preorderAnimation(heapToTree(this.tree, 0), this.defSpeed);
   }
 
   inorder() {
-    inorderAnimation(this.tree, this.defSpeed);
+    inorderAnimation(heapToTree(this.tree, 0), this.defSpeed);
   }
 
   postorder() {
-    postorderAnimation(this.tree, this.defSpeed);
+    postorderAnimation(heapToTree(this.tree, 0), this.defSpeed);
   }
 
 }

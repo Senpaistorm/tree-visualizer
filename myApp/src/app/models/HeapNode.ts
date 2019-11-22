@@ -1,9 +1,7 @@
-export default class HeapNode {
-  nodes;
-  size;
+import {Tree} from './Tree';
 
+export default class HeapNode extends Tree {
   constructor(value: number) {
-      this.nodes = [value];
-      this.size = 1;
+    super(value);
   }
 }
