@@ -14,6 +14,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AlertPopupComponent } from './components/alert-popup/alert-popup.component';
 import { AvlTreeComponent } from './components/avl-tree/avl-tree.component';
+import { HeapComponent } from './components/heap/heap.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AvlTreeComponent } from './components/avl-tree/avl-tree.component';
     SidenavComponent,
     ToolbarComponent,
     AlertPopupComponent,
-    AvlTreeComponent
+    AvlTreeComponent,
+    HeapComponent
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {insert, deleteNode, getAnimations, clearAnimations} from '../../models/BinarySearchTree';
-import {parse} from '../../util';
-import { preorderAnimation, inorderAnimation, postorderAnimation,
-  applyAnimationList
- } from '../../animations';
-import BinarySearchTreeNode from '../../models/BinarySearchTreeNode';
+import HeapNode from '../../models/HeapNode';
+import { insert, deleteNode } from '../../models/MaxHeap';
+import { parseHeap } from '../../util';
+import { preorderAnimation, inorderAnimation, postorderAnimation } from '../../animations';
 
 @Component({
-  selector: 'app-binary-search-tree',
-  templateUrl: './binary-search-tree.component.html',
-  styleUrls: ['./binary-search-tree.component.css']
+  selector: 'app-heap',
+  templateUrl: './heap.component.html',
+  styleUrls: ['./heap.component.css']
 })
-export class BinarySearchTreeComponent implements OnInit {
-  tree: BinarySearchTreeNode = null;
+export class HeapComponent implements OnInit {
+  tree: HeapNode = null;
   treeNodes: any = [];
   treeEdges: any = [];
   rect = null;
@@ -33,10 +31,6 @@ export class BinarySearchTreeComponent implements OnInit {
   onResize() {
     this.height = Math.max(this.height, document.documentElement.clientHeight);
     this.width = Math.max(this.width, document.getElementById('tree-editor').offsetWidth);
-  }
-
-  testa(){
-    this.treeNodes[0].top = 100;
   }
 
   addNode($event) {
@@ -79,12 +73,12 @@ export class BinarySearchTreeComponent implements OnInit {
       rand = Math.floor((Math.random() * 100) + 1);
       this.tree = insert(this.tree, rand);
     }
-    clearAnimations();
+    //clearAnimations();
     this.setTree();
   }
 
   setTree() {
-    Promise.resolve(parse(this.tree))
+    Promise.resolve(parseHeap(this.tree))
       .then((res) => {
         this.treeNodes = res;
       })
@@ -115,4 +109,5 @@ export class BinarySearchTreeComponent implements OnInit {
   postorder() {
     postorderAnimation(this.tree, this.defSpeed);
   }
+
 }

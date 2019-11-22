@@ -8,7 +8,6 @@
   >
 </app-toolbar>
 
-<button (click)="testa()">test</button>
 <div class="col-12" (window:resize)="onResize()" id="tree-editor">
   <div id="node-{{node.value}}" class="node fadeIn" *ngFor="let node of treeNodes"
     [style.top.px]="node.top"
@@ -24,10 +23,7 @@
       [attr.y2]="edge.y2 + nodeSize / 2"
     />
   </svg>
-
 </div>
-
-
 
 <app-alert-popup
   [isActive]="alertShow"

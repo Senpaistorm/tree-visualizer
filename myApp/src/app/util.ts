@@ -1,3 +1,5 @@
+import {left, right} from './models/MaxHeap';
+
 const getWidth = () => {
   const rect = document.getElementById('tree-editor').getBoundingClientRect();
   return rect.width;
@@ -99,7 +101,53 @@ export const getHeight = (node) => {
     return 0;
   }
   return node.height;
-}
+};
+
+export const parseHeap = (heap) => {
+  console.log(heap);
+  const treeNodes = [];
+  heap.nodes.forEach((node, i) => {
+    const edges = [];
+    const depth = Math.floor(Math.log2(i + 1));
+    const leftOffset = depth < 2 ? i - depth : i + 1 - Math.pow(2, depth);
+    const size = Math.pow(2, depth);
+    const width = getWidth();
+    const top = depth * 80;
+    const leftPos = leftOffset * width / size + width / size / 2;
+
+    // has left edge
+    if (left(i) < heap.size) {
+      edges.push({
+        from: ({value: node}),
+        x1: leftPos,
+        y1: top,
+        to: {value: heap[left(i)]},
+        x2: leftPos - width / (size * 4),
+        y2: (depth + 1) * 80,
+      });
+    }
+
+    // has right edge
+    if (right(i) < heap.size) {
+      edges.push({
+        from: ({value: node}),
+        x1: leftPos,
+        y1: top,
+        to: {value: heap[right(i)]},
+        x2: leftPos + width / (size * 4),
+        y2: (depth + 1) * 80,
+      });
+    }
+
+    treeNodes.push({
+      value: node,
+        top: top,
+        left: leftPos ,
+        edges: edges,
+      });
+  });
+  return treeNodes;
+};
 // export const getEdges = (tree) => {
 //   if (!tree) { return; }
 //   const bfs = [tree];

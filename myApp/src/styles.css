@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 .node{
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -ms-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
   height: 40px;
   width: 40px;
   position: absolute;
@@ -19,6 +24,7 @@
 }
 
 .hl-node{
+  top:50;
   border: 3px solid rgb(255, 136, 0);
 }
 
