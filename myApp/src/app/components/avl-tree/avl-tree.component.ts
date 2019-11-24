@@ -35,17 +35,12 @@ export class AvlTreeComponent implements OnInit {
 
   addNode($event) {
     const value = $event;
-    let animationList;
     if (!value) {
       this.alertShow = true;
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;
     }
     this.tree = insert(this.tree, value);
-    // animationList = getAnimations();
-    // console.log(animationList);
-    // applyAnimationList(animationList);
-    // animation
     this.setTree();
   }
 
@@ -73,7 +68,6 @@ export class AvlTreeComponent implements OnInit {
       rand = Math.floor((Math.random() * 100) + 1);
       this.tree = insert(this.tree, rand);
     }
-    //clearAnimations();
     this.setTree();
   }
 
