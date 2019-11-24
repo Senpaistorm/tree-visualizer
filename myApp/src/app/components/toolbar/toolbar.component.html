@@ -1,40 +1,38 @@
-<div class="row">
-  <div class="col-12 row">
-    <div class="input-group col-3">
-      <input class="form-control" type="number" [formControl]="rootValue"
-      placeholder="Insert Node"/>
-      <button class="btn btn-primary" type="button"
-      (click)="addNodeEvent()">
-        Confirm
-      </button>
-      </div>
-    <div class="input-group col-3">
-      <input class="form-control" type="number" [formControl]="deleteValue"
-      placeholder="Delete Node"/>
-      <button class="btn btn-primary" type="button"
-      (click)="deleteNodeEvent()">
-        Confirm
-      </button>
+<div class="row toolbar-main">
+  <div class="input-group col-3">
+    <input class="form-control" type="number" [formControl]="rootValue"
+    placeholder="Insert Node"/>
+    <button class="btn btn-primary" type="button"
+    (click)="addNodeEvent()">
+      Confirm
+    </button>
     </div>
-    <div class="col-3">
-      <button class="btn btn-primary" type="button"
-      (click)="generateRandomTreeEvent()">
-        Generate Random tree
-      </button>
-    </div>
-    <div class="col-3 btn-group" role="group" aria-label="traversal-btns">
-      <button class="btn btn-primary" type="button"
-      (click)="inorderEvent()">
-        Inorder
-      </button>
-      <button class="btn btn-primary" type="button"
-      (click)="preorderEvent()">
-        Preorder
-      </button>
-      <button class="btn btn-primary" type="button"
-      (click)="postorderEvent()">
-        Postorder
-      </button>
-      </div>
+  <div class="input-group col-3">
+    <input class="form-control" type="number" [formControl]="deleteValue"
+    placeholder="Delete Node"/>
+    <button class="btn btn-primary" type="button"
+    (click)="deleteNodeEvent()">
+      Confirm
+    </button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary" type="button"
+    (click)="generateRandomTreeEvent()">
+      Generate Random Tree
+    </button>
+  </div>
+  <div class="col-3 btn-group" role="group" aria-label="traversal-btns">
+    <button class="btn btn-primary" type="button"
+    (click)="inorderEvent()">
+      Inorder
+    </button>
+    <button class="btn btn-primary" type="button"
+    (click)="preorderEvent()">
+      Preorder
+    </button>
+    <button class="btn btn-primary" type="button"
+    (click)="postorderEvent()">
+      Postorder
+    </button>
   </div>
 </div>

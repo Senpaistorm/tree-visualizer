@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { insert, deleteNode } from '../../models/AVLTree';
 import { applyAnimationList, preorderAnimation, inorderAnimation, postorderAnimation } from '../../animations';
-import { parse } from '../../util';
+import { parse, generateKNodesTree } from '../../util';
 import AVLTreeNode from '../../models/AVLTreeNode';
 
 @Component({
   selector: 'app-avl-tree',
   templateUrl: './avl-tree.component.html',
-  styleUrls: ['./avl-tree.component.css']
+  styleUrls: []
 })
 export class AvlTreeComponent implements OnInit {
   tree: AVLTreeNode = null;
@@ -62,12 +62,7 @@ export class AvlTreeComponent implements OnInit {
   }
 
   generateRandomTree() {
-    let rand;
-    this.tree = null;
-    for (let i = 0; i < 10; i++) {
-      rand = Math.floor((Math.random() * 100) + 1);
-      this.tree = insert(this.tree, rand);
-    }
+    this.tree = generateKNodesTree(insert, 10);
     this.setTree();
   }
 

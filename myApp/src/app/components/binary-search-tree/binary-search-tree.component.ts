@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {insert, deleteNode, getAnimations, clearAnimations} from '../../models/BinarySearchTree';
-import {parse} from '../../util';
+import {parse, generateKNodesTree} from '../../util';
 import { preorderAnimation, inorderAnimation, postorderAnimation,
   applyAnimationList
  } from '../../animations';
@@ -9,13 +9,12 @@ import BinarySearchTreeNode from '../../models/BinarySearchTreeNode';
 @Component({
   selector: 'app-binary-search-tree',
   templateUrl: './binary-search-tree.component.html',
-  styleUrls: ['./binary-search-tree.component.css']
+  styleUrls: []
 })
 export class BinarySearchTreeComponent implements OnInit {
   tree: BinarySearchTreeNode = null;
   treeNodes: any = [];
   treeEdges: any = [];
-  rect = null;
   nodeSize = 40;
   defSpeed = 500;
 
@@ -68,13 +67,7 @@ export class BinarySearchTreeComponent implements OnInit {
   }
 
   generateRandomTree() {
-    let rand;
-    this.tree = null;
-    for (let i = 0; i < 10; i++) {
-      rand = Math.floor((Math.random() * 100) + 1);
-      this.tree = insert(this.tree, rand);
-    }
-    clearAnimations();
+    this.tree = generateKNodesTree(insert, 10);
     this.setTree();
   }
 

@@ -37,12 +37,12 @@ const getBalance = (node: AVLTreeNode) => {
 };
 
 const minValueNode = (node) => {
-      let current = node;
-      /* loop down to find the leftmost leaf */
-      while (current.left) {
-        current = current.left;
-      }
-      return current;
+  let current = node;
+  /* loop down to find the leftmost leaf */
+  while (current.left) {
+    current = current.left;
+  }
+  return current;
 };
 
 export const deleteNode = (node: AVLTreeNode, value: number) => {
@@ -59,7 +59,7 @@ export const deleteNode = (node: AVLTreeNode, value: number) => {
   } else {
     // this is the node to be deleted
     // node with only one child or no child
-    if ((!node.left) || (!node.right)){
+    if ((!node.left) || (!node.right)) {
       let tmp = null;
       if (tmp === node.left) {
         tmp = node.right;

@@ -165,29 +165,19 @@ export const heapToTree = (heap, i) => {
   }
   return root;
 };
-// export const getEdges = (tree) => {
-//   if (!tree) { return; }
-//   const bfs = [tree];
-//   const edgeList = [];
-//   let cur;
 
-//   while (bfs.length > 0) {
-//     cur = bfs.splice(0, 1)[0];
-//     if (cur.left) {
-//       bfs.push(cur.left);
-//       edgeList.push({
-//         from: cur,
-//         to: cur.left
-//       });
-//     }
-//     if (cur.right) {
-//       bfs.push(cur.right);
-//       edgeList.push({
-//         from: cur,
-//         to: cur.right
-//       });
-//     }
-//   }
-//   return edgeList;
-// };
+export const swap = (A, x, y) => {
+  const tmp = A[x];
+  A[x] = A[y];
+  A[y] = tmp;
+};
 
+export const generateKNodesTree = (insertMethod, k) => {
+  let rand;
+  let tree = null;
+  for (let i = 0; i < k; i++) {
+    rand = Math.floor((Math.random() * 100) + 1);
+    tree = insertMethod(tree, rand);
+  }
+  return tree;
+}

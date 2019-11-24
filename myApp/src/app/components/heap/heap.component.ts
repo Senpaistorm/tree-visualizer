@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { insert, deleteNode } from '../../models/MaxHeap';
-import { parseHeap, heapToTree } from '../../util';
+import { parseHeap, heapToTree, generateKNodesTree } from '../../util';
 import { preorderAnimation, inorderAnimation, postorderAnimation } from '../../animations';
 
 @Component({
   selector: 'app-heap',
   templateUrl: './heap.component.html',
-  styleUrls: ['./heap.component.css']
+  styleUrls: []
 })
 export class HeapComponent implements OnInit {
   tree = null;
@@ -34,7 +34,6 @@ export class HeapComponent implements OnInit {
 
   addNode($event) {
     const value = $event;
-    let animationList;
     if (!value) {
       this.alertShow = true;
       this.alertMsg = 'Invalid input - node value cannot be empty.';
@@ -62,13 +61,7 @@ export class HeapComponent implements OnInit {
   }
 
   generateRandomTree() {
-    let rand;
-    this.tree = null;
-    for (let i = 0; i < 10; i++) {
-      rand = Math.floor((Math.random() * 100) + 1);
-      this.tree = insert(this.tree, rand);
-    }
-    console.log(heapToTree(this.tree, 0));
+    this.tree = generateKNodesTree(insert, 10);
     this.setTree();
   }
 
