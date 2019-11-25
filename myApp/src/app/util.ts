@@ -105,7 +105,6 @@ export const getHeight = (node) => {
 };
 
 export const parseHeap = (heap) => {
-  console.log(heap);
   const treeNodes = [];
   heap.forEach((node, i) => {
     const edges = [];
@@ -182,4 +181,21 @@ export const generateKNodesTree = (insertMethod, k) => {
     tree = insertMethod(tree, rand);
   }
   return tree;
+};
+
+// this computes the difference between two lists of nodes a,b and
+// returns it as an object for animation
+export const diffNodes = (a: any , b: any) {
+  const res = {
+    new : [],
+    modified: [],
+    deleted: [],
+  };
+
+  a.forEach((node, i) => {
+    const found = b.find(element => element.value === node.value);
+    if (found === null) {
+
+    }
+  });
 };

@@ -13,7 +13,6 @@ export class AvlTreeComponent implements OnInit {
   tree: AVLTreeNode = null;
   treeNodes: any = [];
   treeEdges: any = [];
-  rect = null;
   defSpeed = 500;
 
   alertMsg = '';

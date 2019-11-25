@@ -2,6 +2,7 @@
   <div id="node-{{node.value}}" class="node" *ngFor="let node of treeNodes"
     [style.top.px]="node.top"
     [style.left.px]="node.left - nodeSize / 2"
+    [style.border]="border"
   >
   {{node.value}}
   </div>

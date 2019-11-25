@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {insert, deleteNode, getAnimations, clearAnimations} from '../../models/BinarySearchTree';
-import {parse, generateKNodesTree} from '../../util';
+import {parse, generateKNodesTree, diffNodes} from '../../util';
 import { preorderAnimation, inorderAnimation, postorderAnimation,
   applyAnimationList
  } from '../../animations';
@@ -63,6 +63,7 @@ export class BinarySearchTreeComponent implements OnInit {
   setTree() {
     Promise.resolve(parse(this.tree))
       .then((res) => {
+        diffNodes(this.treeNodes, res);
         this.treeNodes = res;
       })
       .then(() => {

@@ -22,17 +22,13 @@ export const insert = (heap, value: number) => {
   if (!heap) {
     return [value];
   }
-  let i = heap.length - 1;
   heap.push(value);
+  let i = heap.length - 1;
   while (i !== 0 && heap[parent(i)] < heap[i]) {
     swap(heap, parent(i), i);
     i = parent(i);
   }
   return heap;
-};
-
-export const deleteNode = (heap: HeapNode, value: number) => {
-  throw new Error('Method not implemented.');
 };
 
 export const getMax = (heap) => {
@@ -46,10 +42,9 @@ export const maxHeapify = (heap, i) => {
   if (l < heap.length && heap[l] > heap[i]) {
     greatest = l;
   }
-  if (r < heap.length && heap[r] > greatest) {
+  if (r < heap.length && heap[r] > heap[greatest]) {
     greatest = r;
   }
-
   if (greatest !== i) {
     swap(heap, i, greatest);
     maxHeapify(heap, greatest);
@@ -57,12 +52,23 @@ export const maxHeapify = (heap, i) => {
   return heap;
 };
 
+export const deleteNode = (heap, value: number) => {
+  const i = heap.findIndex(node => node === value);
+  if (i < 0) {
+    return heap;
+  }
+  heap[i] = heap[heap.length - 1];
+  heap.length--;
+  heap = maxHeapify(heap, i);
+  return heap;
+};
+
 export const extractMax = (heap) => {
-  if (!heap || heap.size === 1) {
+  if (!heap || heap.length === 1) {
     return null;
   }
   const root = heap[0];
-  heap[0] = heap[heap.size - 1];
+  heap[0] = heap[heap.length - 1];
   heap.length--;
   heap = maxHeapify(heap, 0);
   return heap;

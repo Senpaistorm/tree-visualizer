@@ -12,7 +12,6 @@ export class HeapComponent implements OnInit {
   tree = null;
   treeNodes: any = [];
   treeEdges: any = [];
-  rect = null;
   defSpeed = 500;
 
   alertMsg = '';

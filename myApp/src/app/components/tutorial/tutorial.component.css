@@ -1,12 +1,12 @@
 .card{
-  margin: 20px;
+  margin: 1rem 0.5rem;
   cursor: pointer;
   transition: transform .5s ease;
 }
 
 .card img{
-  height: 300px;
-  width: auto;
+  width: 100%;
+  height: auto;
 }
 
 .card:hover{

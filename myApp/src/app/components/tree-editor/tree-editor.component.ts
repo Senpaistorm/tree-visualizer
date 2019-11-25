@@ -10,20 +10,22 @@ export class TreeEditorComponent implements OnInit {
   @Input() treeNodes;
   @Input() treeEdges;
   nodeSize = 40;
+  offset = 150;
   height = null;
   width = null;
 
   constructor() { }
 
   ngOnInit() {
-    this.height = document.documentElement.clientHeight;
+    this.height = document.documentElement.clientHeight - this.offset;
     this.width = document.getElementById('tree-editor').offsetWidth;
   }
 
   onResize() {
-    this.height = Math.max(this.height, document.documentElement.clientHeight);
+    this.height = Math.max(this.height, document.documentElement.clientHeight) - this.offset;
     this.width = Math.max(this.width, document.getElementById('tree-editor').offsetWidth);
   }
+
 
 
 }

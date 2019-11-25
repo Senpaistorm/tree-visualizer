@@ -13,8 +13,6 @@ export class TutorialComponent implements OnInit {
 
   ngOnInit() {
   }
-  id = 'bst';
-  imgsrc= ("../../assets/Binary_search_tree.svg")
 
   changeActiveOption(i) {
     this.selectActiveOption.emit(i);

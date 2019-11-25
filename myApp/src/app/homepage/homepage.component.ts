@@ -31,7 +31,7 @@ export class HomepageComponent implements OnInit {
     // highlight selection
     const cur = document.getElementById(`navoption-${i}`);
     if (cur) {
-      cur.style.background = 'rgb(230,230,230)';
+      cur.style.background = 'rgb(220,220,220)';
     }
   }
 }
