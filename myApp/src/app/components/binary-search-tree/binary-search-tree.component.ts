@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {insert, deleteNode, getAnimations, clearAnimations} from '../../models/BinarySearchTree';
-import {parse, generateKNodesTree, diffNodes} from '../../util';
+import {parse, generateKNodesTree, diffNodes, diffEdges} from '../../util';
 import { preorderAnimation, inorderAnimation, postorderAnimation,
-  applyAnimationList
+  applyAnimationList,
+  updateNodes,
+  updateEdges
  } from '../../animations';
 import BinarySearchTreeNode from '../../models/BinarySearchTreeNode';
 
@@ -62,35 +64,18 @@ export class BinarySearchTreeComponent implements OnInit {
 
   setTree() {
     Promise.resolve(parse(this.tree))
-      .then((res) => {
-        return diffNodes(this.treeNodes, res);
+      .then((res: any) => {
+        const diff = {
+          diffNodes: diffNodes(this.treeNodes, res.treeNodes),
+          diffEdges: diffEdges(this.treeEdges, res.treeEdges)
+        };
+        return diff;
       })
       .then((diff) => {
-        diff.modified.forEach((node, i) => {
-          console.log(node)
-          const index = this.treeNodes.findIndex(n => n.value === node.value);
-          this.treeNodes[index].top = node.top;
-          this.treeNodes[index].left = node.left;
-        });
-        this.treeNodes = this.treeNodes.concat(diff.new);
-        diff.deleted.forEach((node) => {
-          const index = this.treeNodes.findIndex(n => n.value === node.value);
-          if (index !== -1) {
-            this.treeNodes.splice(index, 1);
-          }
-        });
+        updateNodes(diff.diffNodes, this.treeNodes);
+        updateEdges(diff.diffEdges, this.treeEdges);
         return;
-      })
-      .then(() => {
-        this.setEdges();
       });
-  }
-
-  setEdges() {
-    this.treeEdges = [];
-    this.treeNodes.forEach((node) => {
-      this.treeEdges = this.treeEdges.concat(node.edges);
-    });
   }
 
   onAlertDismiss() {

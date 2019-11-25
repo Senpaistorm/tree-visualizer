@@ -4,7 +4,7 @@ import {
 } from '@angular/animations';
 
 import {
-  preorder, inorder, postorder
+  preorder, inorder, postorder, sameEdge
 } from '../app/util';
 
 export const transAnimation = animation([
@@ -110,4 +110,43 @@ export const applyAnimationList = async (animationList, speed= 500) => {
     applyAnimation(cur);
 
   }
+};
+
+export const updateNodes = (diff, treeNodes) => {
+  diff.modified.forEach((node, i) => {
+    const index = treeNodes.findIndex(n => n.value === node.value);
+    treeNodes[index].top = node.top;
+    treeNodes[index].left = node.left;
+    treeNodes[index].edges = node.edges;
+  });
+  diff.new.forEach(node => {
+    treeNodes.push(node);
+  });
+  diff.deleted.forEach((node) => {
+    const index = treeNodes.findIndex(n => n.value === node.value);
+    if (index !== -1) {
+      treeNodes.splice(index, 1);
+    }
+  });
+};
+
+export const updateEdges = (diff, treeEdges) => {
+  diff.modified.forEach((edge, i) => {
+    const index = treeEdges.findIndex(n => sameEdge(n, edge));
+    if (index !== -1) {
+      treeEdges[index].x1 = edge.x1;
+      treeEdges[index].y1 = edge.y1;
+      treeEdges[index].x2 = edge.x2;
+      treeEdges[index].y2 = edge.y2;
+    }
+  });
+  diff.new.forEach(edge => {
+    treeEdges.push(edge);
+  });
+  diff.deleted.forEach((edge) => {
+    const index = treeEdges.findIndex(n => sameEdge(n, edge));
+    if (index !== -1) {
+      treeEdges.splice(index, 1);
+    }
+  });
 };

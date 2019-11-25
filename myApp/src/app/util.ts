@@ -13,6 +13,7 @@ export const parse = (tree: any) => {
   let bfs = [tree];
   let newQueue;
   const treeNodes = [];
+  const edges = [];
   let cur;
   while (bfs.length > 0) {
     newQueue = [...bfs];
@@ -26,7 +27,6 @@ export const parse = (tree: any) => {
       if (cur) {
         const top = depth * 80;
         const left = leftOffset * width / size + width / size / 2;
-        const edges = [];
 
         bfs.push(cur.left);
         if (cur.left) {
@@ -53,8 +53,7 @@ export const parse = (tree: any) => {
         treeNodes.push({
           value: cur.value,
           top: top,
-          left: left ,
-          edges: edges,
+          left: left
         });
       } else {
         bfs.push(null);
@@ -67,7 +66,7 @@ export const parse = (tree: any) => {
       break;
     }
   }
-  return treeNodes;
+  return {treeNodes: treeNodes, treeEdges: edges};
 };
 
 export const preorder = (tree, res= []) => {
@@ -106,8 +105,8 @@ export const getHeight = (node) => {
 
 export const parseHeap = (heap) => {
   const treeNodes = [];
+  const edges = [];
   heap.forEach((node, i) => {
-    const edges = [];
     const depth = Math.floor(Math.log2(i + 1));
     const leftOffset = depth < 2 ? i - depth : i + 1 - Math.pow(2, depth);
     const size = Math.pow(2, depth);
@@ -143,10 +142,12 @@ export const parseHeap = (heap) => {
       value: node,
         top: top,
         left: leftPos ,
-        edges: edges,
       });
   });
-  return treeNodes;
+  return {
+    treeNodes: treeNodes,
+    treeEdges: edges
+  };
 };
 
 export const heapToTree = (heap, i) => {
@@ -187,6 +188,15 @@ const samePositionNode = (a, b) => {
   return a.top === b.top && a.left === b.left;
 };
 
+export const sameEdge = (a, b) => {
+  return a.from.value === b.from.value && a.to.value === b.to.value;
+};
+
+const samePositionEdge = (a, b) => {
+  return a.x1 === b.x1 && a.y1 === b.y1 &&
+          a.x2 === b.x2 && a.y2 === b.y2;
+};
+
 // this computes the difference between two lists of nodes a,b and
 // returns it as an object for animation
 export const diffNodes = (a: any , b: any) => {
@@ -200,6 +210,19 @@ export const diffNodes = (a: any , b: any) => {
   res.deleted = a.filter(n => b.findIndex(v => v.value === n.value) === -1);
   res.modified = b.filter(n => a.findIndex(v =>
     v.value === n.value && !samePositionNode(n, v)) !== -1);
-  console.log(res);
+  return res;
+};
+
+export const diffEdges = (a: any, b: any) => {
+  const res = {
+    new : [],
+    modified: [],
+    deleted: [],
+  };
+
+  res.new = b.filter(n => a.findIndex(v => sameEdge(n, v)) === -1);
+  res.deleted = a.filter(n => b.findIndex(v => sameEdge(n, v)) === -1);
+  res.modified = b.filter(n => a.findIndex(v =>
+    sameEdge(n, v) && !samePositionEdge(n, v)) !== -1);
   return res;
 };

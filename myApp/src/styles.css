@@ -29,6 +29,11 @@
 }
 
 .edge{
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -ms-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
   stroke:rgb(0,0,0);
   stroke-width: 2;
 }

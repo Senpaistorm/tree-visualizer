@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { insert, deleteNode } from '../../models/MaxHeap';
-import { parseHeap, heapToTree, generateKNodesTree } from '../../util';
-import { preorderAnimation, inorderAnimation, postorderAnimation } from '../../animations';
+import { parseHeap, heapToTree, generateKNodesTree, diffNodes, diffEdges } from '../../util';
+import { preorderAnimation, inorderAnimation, postorderAnimation, updateNodes, updateEdges } from '../../animations';
 
 @Component({
   selector: 'app-heap',
@@ -56,19 +56,18 @@ export class HeapComponent implements OnInit {
 
   setTree() {
     Promise.resolve(parseHeap(this.tree))
-      .then((res) => {
-        this.treeNodes = res;
+      .then((res: any) => {
+        const diff = {
+          diffNodes: diffNodes(this.treeNodes, res.treeNodes),
+          diffEdges: diffEdges(this.treeEdges, res.treeEdges)
+        };
+        return diff;
       })
-      .then(() => {
-        this.setEdges();
+      .then((diff) => {
+        updateNodes(diff.diffNodes, this.treeNodes);
+        updateEdges(diff.diffEdges, this.treeEdges);
+        return;
       });
-  }
-
-  setEdges() {
-    this.treeEdges = [];
-    this.treeNodes.forEach((node) => {
-      this.treeEdges = this.treeEdges.concat(node.edges);
-    });
   }
 
   onAlertDismiss() {
