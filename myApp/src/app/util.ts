@@ -183,19 +183,23 @@ export const generateKNodesTree = (insertMethod, k) => {
   return tree;
 };
 
+const samePositionNode = (a, b) => {
+  return a.top === b.top && a.left === b.left;
+};
+
 // this computes the difference between two lists of nodes a,b and
 // returns it as an object for animation
-export const diffNodes = (a: any , b: any) {
+export const diffNodes = (a: any , b: any) => {
   const res = {
     new : [],
     modified: [],
     deleted: [],
   };
 
-  a.forEach((node, i) => {
-    const found = b.find(element => element.value === node.value);
-    if (found === null) {
-
-    }
-  });
+  res.new = b.filter(n => a.findIndex(v => v.value === n.value) === -1);
+  res.deleted = a.filter(n => b.findIndex(v => v.value === n.value) === -1);
+  res.modified = b.filter(n => a.findIndex(v =>
+    v.value === n.value && !samePositionNode(n, v)) !== -1);
+  console.log(res);
+  return res;
 };

@@ -63,8 +63,23 @@ export class BinarySearchTreeComponent implements OnInit {
   setTree() {
     Promise.resolve(parse(this.tree))
       .then((res) => {
-        diffNodes(this.treeNodes, res);
-        this.treeNodes = res;
+        return diffNodes(this.treeNodes, res);
+      })
+      .then((diff) => {
+        diff.modified.forEach((node, i) => {
+          console.log(node)
+          const index = this.treeNodes.findIndex(n => n.value === node.value);
+          this.treeNodes[index].top = node.top;
+          this.treeNodes[index].left = node.left;
+        });
+        this.treeNodes = this.treeNodes.concat(diff.new);
+        diff.deleted.forEach((node) => {
+          const index = this.treeNodes.findIndex(n => n.value === node.value);
+          if (index !== -1) {
+            this.treeNodes.splice(index, 1);
+          }
+        });
+        return;
       })
       .then(() => {
         this.setEdges();
