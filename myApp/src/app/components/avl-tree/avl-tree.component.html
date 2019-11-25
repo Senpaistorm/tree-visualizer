@@ -8,25 +8,10 @@
   >
 </app-toolbar>
 
-<div class="col-12" (window:resize)="onResize()" id="tree-editor">
-  <div id="node-{{node.value}}" class="node fadeIn" *ngFor="let node of treeNodes"
-    [style.top.px]="node.top"
-    [style.left.px]="node.left - nodeSize / 2"
-  >
-  {{node.value}}
-  </div>
-  <svg [attr.height]="height" [attr.width]="width">
-    <line id="edge-{{edge.from.value}}-{{edge.to.value}}" class="edge" *ngFor="let edge of treeEdges"
-      [attr.x1]="edge.x1"
-      [attr.y1]="edge.y1 + nodeSize / 2"
-      [attr.x2]="edge.x2"
-      [attr.y2]="edge.y2 + nodeSize / 2"
-    />
-  </svg>
-
-</div>
-
-
+<app-tree-editor
+  [treeNodes]="treeNodes"
+  [treeEdges]="treeEdges">
+</app-tree-editor>
 
 <app-alert-popup
   [isActive]="alertShow"

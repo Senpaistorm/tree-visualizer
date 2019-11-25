@@ -15,32 +15,21 @@ export class BinarySearchTreeComponent implements OnInit {
   tree: BinarySearchTreeNode = null;
   treeNodes: any = [];
   treeEdges: any = [];
-  nodeSize = 40;
   defSpeed = 500;
 
   alertMsg = '';
   alertShow = false;
   constructor() { }
 
-  height = null;
-  width = null;
   ngOnInit() {
-    this.height = document.documentElement.clientHeight;
-    this.width = document.getElementById('tree-editor').offsetWidth;
   }
 
   onResize() {
-    this.height = Math.max(this.height, document.documentElement.clientHeight);
-    this.width = Math.max(this.width, document.getElementById('tree-editor').offsetWidth);
-  }
-
-  testa(){
-    this.treeNodes[0].top = 100;
   }
 
   addNode($event) {
     const value = $event;
-    if (!value) {
+    if (value === null) {
       this.alertShow = true;
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;
@@ -51,7 +40,7 @@ export class BinarySearchTreeComponent implements OnInit {
 
   deleteNode($event) {
     const value = $event;
-    if (!value) {
+    if (value === null) {
       this.alertShow = true;
       this.alertMsg = 'Invalid input - node value cannot be empty.';
       return;

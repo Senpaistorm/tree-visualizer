@@ -172,6 +172,8 @@ export const swap = (A, x, y) => {
   A[y] = tmp;
 };
 
+// this takes in an insert function and an integer k,
+// and generates a k noded tree using the insertion method
 export const generateKNodesTree = (insertMethod, k) => {
   let rand;
   let tree = null;
@@ -180,4 +182,4 @@ export const generateKNodesTree = (insertMethod, k) => {
     tree = insertMethod(tree, rand);
   }
   return tree;
-}
+};

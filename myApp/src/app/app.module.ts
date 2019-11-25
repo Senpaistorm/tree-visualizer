@@ -15,6 +15,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AlertPopupComponent } from './components/alert-popup/alert-popup.component';
 import { AvlTreeComponent } from './components/avl-tree/avl-tree.component';
 import { HeapComponent } from './components/heap/heap.component';
+import { TreeEditorComponent } from './components/tree-editor/tree-editor.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { HeapComponent } from './components/heap/heap.component';
     ToolbarComponent,
     AlertPopupComponent,
     AvlTreeComponent,
-    HeapComponent
+    HeapComponent,
+    TreeEditorComponent
   ],
   imports: [
     BrowserModule,

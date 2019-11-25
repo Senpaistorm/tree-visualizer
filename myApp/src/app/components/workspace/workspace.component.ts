@@ -15,7 +15,6 @@ export class WorkspaceComponent implements OnInit {
   }
 
   changeActiveOption($event) {
-    console.log($event);
     this.selectActiveOption.emit($event);
   }
 

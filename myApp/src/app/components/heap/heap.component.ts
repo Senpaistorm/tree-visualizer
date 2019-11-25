@@ -13,23 +13,13 @@ export class HeapComponent implements OnInit {
   treeNodes: any = [];
   treeEdges: any = [];
   rect = null;
-  nodeSize = 40;
   defSpeed = 500;
 
   alertMsg = '';
   alertShow = false;
   constructor() { }
 
-  height = null;
-  width = null;
   ngOnInit() {
-    this.height = document.documentElement.clientHeight;
-    this.width = document.getElementById('tree-editor').offsetWidth;
-  }
-
-  onResize() {
-    this.height = Math.max(this.height, document.documentElement.clientHeight);
-    this.width = Math.max(this.width, document.getElementById('tree-editor').offsetWidth);
   }
 
   addNode($event) {
