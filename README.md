@@ -9,3 +9,9 @@ ng serve -o
 ```
 
 The application will open then automatically on your browser at localhost:4200.
+
+## Currently Supported Tree Types
+
+* Binary Search Tree
+* AVL Tree
+* Heap
