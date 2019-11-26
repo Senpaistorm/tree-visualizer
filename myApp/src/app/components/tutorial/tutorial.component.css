@@ -1,5 +1,5 @@
 .card{
-  margin: 1rem 0.5rem;
+  margin: 1rem 0;
   cursor: pointer;
   transition: transform .5s ease;
 }
@@ -12,4 +12,8 @@
 .card:hover{
   box-shadow: rgb(209, 209, 213) 0px 6px 15px;
   transform: scale(1.05);
+}
+
+.row {
+   margin: 0;
 }

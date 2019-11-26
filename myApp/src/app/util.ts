@@ -184,6 +184,10 @@ export const generateKNodesTree = (insertMethod, k) => {
   return tree;
 };
 
+const sameNode = (a, b) => {
+  return a.value === b.value && samePositionNode(a, b);
+}
+
 const samePositionNode = (a, b) => {
   return a.top === b.top && a.left === b.left;
 };
@@ -224,5 +228,40 @@ export const diffEdges = (a: any, b: any) => {
   res.deleted = a.filter(n => b.findIndex(v => sameEdge(n, v)) === -1);
   res.modified = b.filter(n => a.findIndex(v =>
     sameEdge(n, v) && !samePositionEdge(n, v)) !== -1);
+  return res;
+};
+
+export const diffNodesHeap = (a, b) => {
+  const res = {
+    new : [],
+    modified: [],
+    deleted: [],
+  };
+
+  // deleted a node from heap
+  if (a.length > b.length ) {
+    res.deleted = a.filter(n =>
+      a.filter(k => k.value === n.value).length >
+      b.filter(v => v.value === n.value).length).slice(-(a.length - b.length));
+    console.log(res.deleted);
+  }
+  // inserted a node
+  if (a.length < b.length) {
+    res.new = b.filter(n =>
+      b.filter(k => k.value === n.value).length >
+      a.filter(v => v.value === n.value).length).slice(-(b.length - a.length));
+    console.log(res.new);
+  }
+  console.log(a);
+  console.log(b);
+  b.forEach((node, i) => {
+    if (i >= a.length || !sameNode(node, a[i])) {
+      if (res.new.filter(n => sameNode(n, node)).length === 0 &&
+          res.deleted.filter(n => sameNode(n, node)).length === 0) {
+        res.modified.push(node);
+      }
+    }
+  })
+  console.log(res);
   return res;
 };

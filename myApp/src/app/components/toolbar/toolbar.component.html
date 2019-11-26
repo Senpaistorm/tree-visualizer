@@ -1,4 +1,4 @@
-<div class="row toolbar-main">
+<div class="row toolbar-main " id="tool_bar">
   <div class="input-group col-3">
     <input class="form-control" type="number" [formControl]="rootValue"
     placeholder="Insert Node"/>
@@ -6,7 +6,7 @@
     (click)="addNodeEvent()">
       Confirm
     </button>
-    </div>
+  </div>
   <div class="input-group col-3">
     <input class="form-control" type="number" [formControl]="deleteValue"
     placeholder="Delete Node"/>
@@ -15,8 +15,8 @@
       Confirm
     </button>
   </div>
-  <div class="col-3">
-    <button class="btn btn-primary" type="button"
+  <div class="col-3 btn-group">
+    <button class="btn btn-primary" type="button" id="btn_gen_random"
     (click)="generateRandomTreeEvent()">
       Generate Random Tree
     </button>
@@ -36,8 +36,3 @@
     </button>
   </div>
 </div>
-
-<button type="button" class="btn btn-primary toolbar-mobile">
-  +
-</button>
-

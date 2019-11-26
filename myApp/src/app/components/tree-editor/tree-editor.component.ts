@@ -17,8 +17,13 @@ export class TreeEditorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const navbarHeight = (document.getElementById('nav_bar').offsetHeight);
+    const toolbarHeight = (document.getElementById('tool_bar').offsetHeight);
+
+    this.offset = navbarHeight + toolbarHeight;
     this.height = document.documentElement.clientHeight - this.offset;
     this.width = document.getElementById('tree-editor').offsetWidth;
+    console.log(this.width);
   }
 
   onResize() {

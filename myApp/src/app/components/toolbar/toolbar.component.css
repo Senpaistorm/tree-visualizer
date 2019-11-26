@@ -4,18 +4,25 @@
 
 @media (max-width: 768px) {
   .toolbar-main {
-    display: none;
-  }
-
-  .toolbar-mobile {
-    display: block;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
+    bottom: 0;
     border-radius: 50%;
     font-size: 2rem;
+  }
+
+  .input-group {
+    flex: 0 0 80%;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  .btn-group {
+    flex: 0 0 80%;
+    max-width: 100%;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -23,4 +30,9 @@
   .toolbar-mobile {
     display: none;
   }
+
+}
+
+#btn_gen_random {
+  margin: auto;
 }
