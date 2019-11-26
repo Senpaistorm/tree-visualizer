@@ -3,7 +3,7 @@ export const treeOptionsData = [
     name: 'Binary Search Tree',
     description: `A binary search tree is a rooted binary tree, whose key in each node must be greater than or equal
     to any key stored in the left sub-tree, and less than or equal to any key stored in the right sub-tree.`,
-    img: 'assets/Binary_search_tree.svg',
+    img: 'assets/binary-search-tree.png',
   },
   {
     name: 'AVL Tree',
