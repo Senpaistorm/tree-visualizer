@@ -23,7 +23,6 @@ export class TreeEditorComponent implements OnInit {
     this.offset = navbarHeight + toolbarHeight;
     this.height = document.documentElement.clientHeight - this.offset;
     this.width = document.getElementById('tree-editor').offsetWidth;
-    console.log(this.width);
   }
 
   onResize() {
